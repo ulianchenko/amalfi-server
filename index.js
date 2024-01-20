@@ -17,7 +17,7 @@ const app = express();
 dotenv.config();
 // const PORT = process.env.PORT || config.get('port') || 8080;
 // eslint-disable-next-line no-undef
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 // const PORT: number = 8080;
 const stripeObj = new Stripe('sk_test_51OWkH4GKmalhlFM413SZO0W54WMJKhMYB1lRE7eNRyzHFsR3SriI1rGRVwVhLRcvnKF2A9KSHABfL0fHIvR7zjXc00ii850ogO');
 // const DOMAIN_NAME = 'http://localhost:3000';
