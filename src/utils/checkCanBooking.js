@@ -4,21 +4,8 @@ import Booking from '../models/Booking';
 
 dayjs.extend(isBetween);
 
-//Interface
-interface IBookingData {
-  adults: number;
-  babies: number;
-  children: number;
-  arrivalDate: Date;
-  departureDate: Date;
-  roomId: string;
-  userId: string;
-  totalPrice: number;
-  expires_at?: number;
-};
-
-const checkCanBooking = async (bookingData: IBookingData): Promise<boolean> => {
-  const bookings: IBookingData[] = await Booking.find();
+const checkCanBooking = async (bookingData) => {
+  const bookings = await Booking.find();
 
   // const hasDuplicateBookingData =
   //   bookings.filter(
@@ -26,7 +13,7 @@ const checkCanBooking = async (bookingData: IBookingData): Promise<boolean> => {
   //       moment(booking.arrivalDate).toString() === moment(bookingData.arrivalDate).toString() ||
   //       moment(booking.departureDate).toString() === moment(bookingData.departureDate).toString()
   //   ).length > 0;
-  const hasDuplicateBookingData: boolean =
+  const hasDuplicateBookingData =
     bookings.filter(
       booking =>
         dayjs(booking.arrivalDate) === dayjs(bookingData.arrivalDate) ||

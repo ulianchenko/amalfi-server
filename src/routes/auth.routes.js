@@ -1,32 +1,24 @@
-import express, { Request, Response } from 'express';
-import { JwtPayload } from 'jsonwebtoken';
-import { check, Result, ValidationError, validationResult } from 'express-validator';
+import express from 'express';
+import { check, validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 
-import User, { IUser } from '../models/User';
-import { IToken } from '../models/Token';
+import User from '../models/User';
 import tokenService from '../services/token.service'
 import generateUserData from '../utils/generateUserData';
 
 
 const router = express.Router({ mergeParams: true });
 
-export interface IAuthToken {
-  accessToken: string;
-  refreshToken: string;
-  expiresIn: number;
-};
-
-function isTokenInvalid(data: any, dbToken: any) {
+function isTokenInvalid(data, dbToken) {
   return !data || !dbToken || data._id !== dbToken?.user?.toString();
 }
 
 router.post('/signUp', [
   check('email', 'Email is incorrect').isEmail(),
   check('password', 'Minimum password length is 8 symbols').isLength({ min: 8 }),
-  async (req: Request, res: Response) => {
+  async (req, res) => {
     try {
-      const errors: Result<ValidationError> = validationResult(req);
+      const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: {
@@ -50,14 +42,14 @@ router.post('/signUp', [
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
-      const newUser: IUser = await User.create({
+      const newUser = await User.create({
         ...generateUserData(firstName, secondName),
         ...req.body,
         role: 'user',
         password: hashedPassword,
       });
 
-      const tokens: IAuthToken = tokenService.generate({ _id: newUser._id });
+      const tokens = tokenService.generate({ _id: newUser._id });
       await tokenService.save(newUser._id, tokens.refreshToken);
       res.status(201).send({ ...tokens, userId: newUser._id });
     } catch (error) {
@@ -71,9 +63,9 @@ router.post('/signUp', [
 router.post('/signInWithPassword', [
   check('email', 'Email is incorrect').normalizeEmail().isEmail(),
   check('password', 'Password cannot be empty').exists(),
-  async (req: Request, res: Response) => {
+  async (req, res) => {
     try {
-      const errors: Result<ValidationError> = validationResult(req);
+      const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({
           error: {
@@ -85,7 +77,7 @@ router.post('/signInWithPassword', [
 
       const { email, password } = req.body;
 
-      const existingUser: IUser | null = await User.findOne({ email });
+      const existingUser = await User.findOne({ email });
       if (!existingUser) {
         return res.status(400).send({
           error: {
@@ -95,7 +87,7 @@ router.post('/signInWithPassword', [
         });
       }
 
-      const existingUserPassword: string | undefined = existingUser.password;
+      const existingUserPassword = existingUser.password;
       if (existingUserPassword) {
         const isPasswordEqual = await bcrypt.compare(password, existingUserPassword);
 
@@ -110,7 +102,7 @@ router.post('/signInWithPassword', [
       }
 
 
-      const tokens: IAuthToken = tokenService.generate({ _id: existingUser._id });
+      const tokens = tokenService.generate({ _id: existingUser._id });
       await tokenService.save(existingUser._id, tokens.refreshToken);
 
       res.status(200).send({
@@ -128,8 +120,8 @@ router.post('/signInWithPassword', [
 router.post('/token', async (req, res) => {
   try {
     const { refresh_token: refreshToken } = req.body;
-    const data: string | JwtPayload | null = tokenService.validateRefresh(refreshToken);
-    const dbToken: IToken | null = await tokenService.findToken(refreshToken);
+    const data = tokenService.validateRefresh(refreshToken);
+    const dbToken = await tokenService.findToken(refreshToken);
 
     if (isTokenInvalid(data, dbToken)) {
       return res.status(401).json({ message: 'Unauthorized' });

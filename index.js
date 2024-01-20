@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 // import config from 'config';
 import dotenv from 'dotenv';
@@ -16,6 +16,7 @@ import routes from './routes'
 const app = express();
 dotenv.config();
 // const PORT = process.env.PORT || config.get('port') || 8080;
+// eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 8080;
 // const PORT: number = 8080;
 const stripeObj = new Stripe('sk_test_51OWkH4GKmalhlFM413SZO0W54WMJKhMYB1lRE7eNRyzHFsR3SriI1rGRVwVhLRcvnKF2A9KSHABfL0fHIvR7zjXc00ii850ogO');
@@ -72,18 +73,19 @@ app.get('/session-status', async (req, res) => {
 });
 
 // Middleware for handling 404 error
-app.use((req: Request, res: Response): void => {
+app.use((req, res) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
 // Middleware for handling 500 error
-app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Internal Server Error' });
   next();
 });
 
 // Start server on port 8080
+// eslint-disable-next-line no-undef
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

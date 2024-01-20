@@ -4,17 +4,16 @@ import roomsMockData from './mockData/rooms.json';
 // Models
 import Room from '../models/Room';
 
-const initDatabase = (): void => {
+const initDatabase = () => {
   // Connect to MongoDB
-  mongoose.connect(
-    'mongodb+srv://ulianchenko:a1b2c3d4e5@cluster0.nzybwy4.mongodb.net/dbAmalfi?retryWrites=true&w=majority'
-  );
+  // eslint-disable-next-line no-undef
+  mongoose.connect(process.env.MONGO_URI);
 
-  const db: mongoose.Connection = mongoose.connection;
+  const db = mongoose.connection;
   db.on('error', console.error.bind(console, 'Connection error'));
   db.once('open', async function () {
     console.log('Connected successfully');
-    const roomsCount: number = await Room.estimatedDocumentCount();
+    const roomsCount = await Room.estimatedDocumentCount();
     if (roomsCount === 0) {
       try {
         await Room.insertMany(roomsMockData);

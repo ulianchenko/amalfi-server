@@ -1,4 +1,4 @@
-function generateUserData(firstName: string, secondName: string) {
+function generateUserData(firstName, secondName) {
   return {
     avatarPhoto: `https://ui-avatars.com/api/?name=${firstName}+${secondName}`,
   };

@@ -1,11 +1,11 @@
-import express, { Request, Response } from 'express';
-import Booking, { IBooking } from '../models/Booking';
+import express from 'express';
+import Booking from '../models/Booking';
 import checkCanBooking from '../utils/checkCanBooking';
 import auth from '../middlewares/auth.middleware';
 
 const router = express.Router({ mergeParams: true });
 
-router.get('/', async (req: Request, res: Response): Promise<void> => {
+router.get('/', async (req, res) => {
   try {
     // const { orderBy, equalTo } = req.query;
     // const bookings = await Booking.find({ [orderBy]: equalTo });
@@ -20,11 +20,11 @@ router.get('/', async (req: Request, res: Response): Promise<void> => {
 });
 
 
-router.post('/', auth, async (req: Request, res: Response): Promise<void> => {
+router.post('/', auth, async (req, res) => {
   try {
-    const canBooking: boolean = await checkCanBooking(req.body);
+    const canBooking = await checkCanBooking(req.body);
     if (canBooking) {
-      const newBooking: IBooking = await Booking.create({
+      const newBooking = await Booking.create({
         ...req.body,
         userId: req.body.user._id,
         expires_at: req.body.departureDate - req.body.arrivalDate,
@@ -52,10 +52,10 @@ router.post('/', auth, async (req: Request, res: Response): Promise<void> => {
 });
 
 // router.delete('/:bookingId', auth, async (req: Request, res: Response): Promise<Response<any, Record<string, any>> | void> => {
-router.delete('/:bookingId', auth, async (req: Request, res: Response): Promise<Response<any, Record<string, any>> | void> => {
+router.delete('/:bookingId', auth, async (req, res) => {
   try {
     const { bookingId } = req.params;
-    const removedBooking: IBooking | null = await Booking.findById(bookingId);
+    const removedBooking = await Booking.findById(bookingId);
     const isAdmin = req.body.userRole === 'admin';
     const currentUser = removedBooking?.userId.toString() === req.body.user._id;
 
