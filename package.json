@@ -6,6 +6,7 @@
   "engines": {
     "node": "18.15.0"
   },
+  "type": "module",
   "scripts": {
     "start": "npm run build && node build/index.js",
     "start:dev": "npx nodemon",
