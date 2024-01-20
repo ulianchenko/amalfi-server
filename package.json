@@ -7,6 +7,10 @@
     "node": "18.15.0"
   },
   "scripts": {
+    "start": "npm run build && node build/index.js",
+    "start:dev": "npx nodemon",
+    "build": "rimraf ./build && tsc",
+    "lint": "eslint src/**/*.ts",
     "test": "jest --forceExit --detectOpenHandles --watch --runInBand",
     "test:coverage": "jest --forceExit --detectOpenHandles --coverage --runInBand",
     "proxy": "https://amalfi-server.vercel.app:8080>"
