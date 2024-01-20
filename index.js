@@ -7,9 +7,9 @@ import Stripe from 'stripe';
 
 // import swaggerUi from 'swagger-ui-express';
 // Database
-import initDatabase from './db/initDatabase';
+import initDatabase from './src/db/initDatabase';
 // Routes
-import routes from './routes'
+import routes from './src/routes'
 // // Swagger
 // import swaggerSpec from './configs/swagerSpec'
 
