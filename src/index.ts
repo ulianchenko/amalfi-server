@@ -19,7 +19,8 @@ dotenv.config();
 const PORT = process.env.PORT || 8080;
 // const PORT: number = 8080;
 const stripeObj = new Stripe('sk_test_51OWkH4GKmalhlFM413SZO0W54WMJKhMYB1lRE7eNRyzHFsR3SriI1rGRVwVhLRcvnKF2A9KSHABfL0fHIvR7zjXc00ii850ogO');
-const DOMAIN_NAME = 'http://localhost:3000';
+// const DOMAIN_NAME = 'http://localhost:3000';
+const DOMAIN_NAME = 'https://amalfi-lk6nxuyv3-serhiis-projects-3f240a8a.vercel.app';
 
 initDatabase();
 
