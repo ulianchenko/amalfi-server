@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
-import config from 'config';
+// import config from 'config';
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
 // import  mongoose, { Document, Model, Schema, model } from 'mongoose';
@@ -15,7 +15,8 @@ import routes from './routes'
 
 const app = express();
 dotenv.config();
-const PORT = process.env.PORT || config.get('port') || 8080;
+// const PORT = process.env.PORT || config.get('port') || 8080;
+const PORT = process.env.PORT || 8080;
 // const PORT: number = 8080;
 const stripeObj = new Stripe('sk_test_51OWkH4GKmalhlFM413SZO0W54WMJKhMYB1lRE7eNRyzHFsR3SriI1rGRVwVhLRcvnKF2A9KSHABfL0fHIvR7zjXc00ii850ogO');
 const DOMAIN_NAME = 'http://localhost:3000';
