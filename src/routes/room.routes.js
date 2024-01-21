@@ -12,10 +12,13 @@ const router = express.Router({ mergeParams: true });
 // router.get('/', async (req: Request, res: Response): Promise<Response<any, Record<string, any>> | void> => {
 router.get('/', async (req, res) => {
   const query = req.query;
+  console.log('query: ', query);
   try {
     const rooms = await Room.find();
+    console.log('rooms: ', rooms);
     if (Object.keys(query).length > 0) {
       const filteredRooms= await filterRooms(rooms, query);
+      console.log('filteredRooms: ', filteredRooms);
       // return res.status(200).send(filteredRooms);
       res.status(200).send(filteredRooms);
       return;
