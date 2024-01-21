@@ -1,4 +1,5 @@
-import  { Schema, model } from 'mongoose';
+// import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
 const reviewSchema = new Schema(
   {
@@ -25,4 +26,5 @@ const reviewSchema = new Schema(
 
 const Review = model('Review', reviewSchema);
 
-export default Review;
+// export default Review;
+module.exports = Review ;

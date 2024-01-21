@@ -1,7 +1,11 @@
-import express from 'express';
-import Room from '../models/Room';
-import filterRooms from '../utils/filterRooms';
-import auth from '../middlewares/auth.middleware';
+// import express from 'express';
+// import Room from '../models/Room';
+// import filterRooms from '../utils/filterRooms';
+// import auth from '../middlewares/auth.middleware';
+const express = require('express');
+const Room = require('../models/Room');
+const filterRooms = require('../utils/filterRooms');
+const auth = require('../middlewares/auth.middleware');
 
 const router = express.Router({ mergeParams: true });
 
@@ -71,4 +75,5 @@ router.patch('/:roomId', auth, async (req, res) => {
   }
 });
 
-export default router;
+// export default router;
+module.exports = router;

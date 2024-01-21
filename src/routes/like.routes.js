@@ -1,6 +1,9 @@
-import express from 'express';
-import Like from '../models/Like';
-import auth from '../middlewares/auth.middleware';
+// import express from 'express';
+// import Like from '../models/Like';
+// import auth from '../middlewares/auth.middleware';
+const express = require ('express');
+const Like = require ('../models/Like');
+const auth = require ('../middlewares/auth.middleware');
 
 const router = express.Router({ mergeParams: true });
 
@@ -54,4 +57,5 @@ router.delete('/:likeId', auth, async (req, res) => {
   }
 });
 
-export default router;
+// export default router;
+module.exports = router;

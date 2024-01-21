@@ -1,10 +1,17 @@
-import express from 'express';
-import { check, validationResult } from 'express-validator';
-import bcrypt from 'bcryptjs';
+// import express from 'express';
+// import { check, validationResult } from 'express-validator';
+// import bcrypt from 'bcryptjs';
 
-import User from '../models/User';
-import tokenService from '../services/token.service'
-import generateUserData from '../utils/generateUserData';
+// import User from '../models/User';
+// import tokenService from '../services/token.service';
+// import generateUserData from '../utils/generateUserData';
+const express = require('express');
+const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
+
+const User = require('../models/User');
+const tokenService  = require('../services/token.service');
+const generateUserData = require('../utils/generateUserData');
 
 
 const router = express.Router({ mergeParams: true });
@@ -145,4 +152,5 @@ router.post('/token', async (req, res) => {
   }
 });
 
-export default router;
+// export default router;
+module.exports = router;

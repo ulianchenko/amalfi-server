@@ -5,4 +5,5 @@ function generateUserData(firstName, secondName) {
 }
 
 
-export default generateUserData;
+// export default generateUserData;
+module.exports = { generateUserData };

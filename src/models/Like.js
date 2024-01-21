@@ -1,4 +1,5 @@
-import  { Schema, model } from 'mongoose';
+// import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
 const likeSchema = new Schema(
   {
@@ -21,4 +22,5 @@ const likeSchema = new Schema(
 
 const Like = model('Like', likeSchema);
 
-export default Like;
+// export default Like;
+module.exports = Like;

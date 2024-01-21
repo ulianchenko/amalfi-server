@@ -1,6 +1,9 @@
-import express from 'express';
-import User from '../models/User';
-import auth from '../middlewares/auth.middleware';
+// import express from 'express';
+// import User from '../models/User';
+// import auth from '../middlewares/auth.middleware';
+const express = require('express');
+const User = require('../models/User');
+const auth = require('../middlewares/auth.middleware');
 
 const router = express.Router({ mergeParams: true });
 
@@ -34,4 +37,5 @@ router.patch('/:userId', auth, async (req, res) => {
   }
 });
 
-export default router;
+// export default router;
+module.exports = router;

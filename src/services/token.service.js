@@ -1,13 +1,16 @@
-import jwt from 'jsonwebtoken';
-import Token from '../models/Token';
-import config from 'config';
+// import jwt from 'jsonwebtoken';
+// import Token from '../models/Token';
+// import config from 'config';
+const jwt = require('jsonwebtoken');
+const Token = require('../models/Token');
+const config = require('config');
 
 
 const token = () => {
   // const accessSecret = 'super secret from backend';
   // const refreshSecret = 'super refresh key';
 
-  const generate = (payload: {_id: string}) => {
+  const generate = (payload) => {
     // const accessToken = jwt.sign(payload, config.get('ACCESS_SECRET'), { expiresIn: '1h' });
     // const accessToken = jwt.sign(payload, accessSecret, { expiresIn: '1h' });
     const accessToken = jwt.sign(payload, config.get('ACCESS_SECRET') || '', { expiresIn: '1h' });
@@ -23,7 +26,7 @@ const token = () => {
     };
   }
 
-  const save = async (userId: string, refreshToken: string) => {
+  const save = async (userId, refreshToken) => {
     const data = await Token.findOne({ user: userId });
     if (data) {
       data.refreshToken = refreshToken;
@@ -33,7 +36,7 @@ const token = () => {
     return token;
   }
 
-  const validateRefresh = (refreshToken: string) => {
+  const validateRefresh = (refreshToken) => {
     try {
       // return jwt.verify(refreshToken, config.get('REFRESH_SECRET'));
       // return jwt.verify(refreshToken, refreshSecret);
@@ -43,7 +46,7 @@ const token = () => {
     }
   }
 
-  const validateAccess = (accessToken: string) => {
+  const validateAccess = (accessToken) => {
     try {
       // return jwt.verify(accessToken, config.get('ACCESS_SECRET'));
       // return jwt.verify(accessToken, accessSecret);
@@ -56,7 +59,7 @@ const token = () => {
   //   return accessToken;
   // }
 
-  const findToken = async (refreshToken: string) => {
+  const findToken = async (refreshToken) => {
     try {
       return await Token.findOne({ refreshToken });
     } catch (error) {
@@ -75,4 +78,5 @@ const tokenService = {
   findToken: token().findToken,
 };
 
-export default tokenService;
+// export default tokenService;
+module.exports = { tokenService };

@@ -1,6 +1,9 @@
-import dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
-import Booking from '../models/Booking';
+// import dayjs from 'dayjs';
+// import isBetween from 'dayjs/plugin/isBetween';
+// import Booking from '../models/Booking';
+const dayjs = require('dayjs');
+const isBetween = require('dayjs/plugin/isBetween');
+const Booking = require('../models/Booking');
 
 dayjs.extend(isBetween);
 
@@ -34,4 +37,5 @@ const checkCanBooking = async (bookingData) => {
   return bookedRoomsIds.filter(bookingId => bookingId === bookingData.roomId).length <= 0;
 };
 
-export default checkCanBooking;
+// export default checkCanBooking;
+module.exports = { checkCanBooking };

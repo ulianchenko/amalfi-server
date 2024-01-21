@@ -1,7 +1,11 @@
-import express from 'express';
-import Booking from '../models/Booking';
-import checkCanBooking from '../utils/checkCanBooking';
-import auth from '../middlewares/auth.middleware';
+// import express from 'express';
+// import Booking from '../models/Booking';
+// import checkCanBooking from '../utils/checkCanBooking';
+// import auth from '../middlewares/auth.middleware';
+const express = require('express');
+const Booking = require('../models/Booking');
+const checkCanBooking = require('../utils/checkCanBooking');
+const auth = require('../middlewares/auth.middleware');
 
 const router = express.Router({ mergeParams: true });
 
@@ -79,4 +83,5 @@ router.delete('/:bookingId', auth, async (req, res) => {
   }
 });
 
-export default router;
+// export default router;
+module.exports = router;

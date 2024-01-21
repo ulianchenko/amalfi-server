@@ -1,6 +1,9 @@
-import express from 'express';
-import Review from '../models/Review';
-import auth from '../middlewares/auth.middleware';
+// import express from 'express';
+// import Review from '../models/Review';
+// import auth from '../middlewares/auth.middleware';
+const express = require('express');
+const Review = require('../models/Review');
+const auth = require('../middlewares/auth.middleware');
 
 const router = express.Router({ mergeParams: true });
 
@@ -65,4 +68,5 @@ router.delete('/:reviewId', auth, async (req, res) => {
   }
 });
 
-export default router;
+// export default router;
+module.exports = router;

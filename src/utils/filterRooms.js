@@ -1,6 +1,9 @@
-import dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
-import Booking from '../models/Booking';
+// import dayjs from 'dayjs';
+// import isBetween from 'dayjs/plugin/isBetween';
+// import Booking from '../models/Booking';
+const dayjs = require('dayjs');
+const isBetween = require('dayjs/plugin/isBetween');
+const Booking = require('../models/Booking');
 
 dayjs.extend(isBetween);
 const msInOneDay = 86400000;
@@ -64,4 +67,5 @@ const filterRooms = async (items, filters) => {
   return filteredItems;
 };
 
-export default filterRooms;
+// export default filterRooms;
+module.exports = { filterRooms };

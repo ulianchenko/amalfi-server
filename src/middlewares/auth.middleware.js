@@ -1,8 +1,11 @@
-import User from '../models/User';
-import tokenService from '../services/token.service';
+// import User from '../models/User';
+// import tokenService from '../services/token.service';
+const User = require('../models/User');
+const tokenService = require('../services/token.service');
 
 
-const auth =  async ( req, res, next) => {
+// const auth = async ( req, res, next) => {
+  module.exports = async ( req, res, next) => {
   // if (req.method === 'OPTIONS') {
   //   next();
   // }
@@ -29,4 +32,5 @@ const auth =  async ( req, res, next) => {
   }
 };
 
-export default auth;
+// export default auth;
+// module.exports = { auth };
