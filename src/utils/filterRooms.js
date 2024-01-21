@@ -64,6 +64,8 @@ const filterRooms = async (items, filters) => {
     filteredItems = filteredItems.filter(room => room.price >= filteredPriceFirst && room.price <= filteredPriceSecond);
   }
 
+  console.log('filteredItems: ', filteredItems);
+
   return filteredItems;
 };
 

@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     const rooms = await Room.find();
     console.log('rooms: ', rooms);
     if (Object.keys(query).length > 0) {
-      const filteredRooms= await filterRooms(rooms, query);
+      const filteredRooms = await filterRooms(rooms, query);
       console.log('filteredRooms: ', filteredRooms);
       // return res.status(200).send(filteredRooms);
       res.status(200).send(filteredRooms);
@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
     res.status(200).send(rooms);
     // res.status(200).json(rooms);
   } catch (error) {
+    console.log('error: ', error);
     res.status(500).json({
       message: 'An error has occurred on the server. Please, try again later',
     });
