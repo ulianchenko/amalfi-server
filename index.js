@@ -46,7 +46,7 @@ const DOMAIN_NAME = 'https://amalfi-lk6nxuyv3-serhiis-projects-3f240a8a.vercel.a
 app.use(express.json());
 app.use(cors());
 
-// app.use('/api', routes);
+app.use('/api', routes);
 
 // Route for the root URL
 app.get('/', (req, res) => {
