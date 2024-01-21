@@ -111,9 +111,10 @@ async function start() {
     // await mongoose.connect(
     //   'mongodb+srv://solexofficial:solexofficial123@cluster0.ijqvj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
     // );
-    await mongoose.connect(
-      'mongodb+srv://ulianchenko:a1b2c3d4e5@cluster0.nzybwy4.mongodb.net/dbAmalfi?retryWrites=true&w=majority'
-    );
+    // await mongoose.connect(
+    //   'mongodb+srv://ulianchenko:a1b2c3d4e5@cluster0.nzybwy4.mongodb.net/dbAmalfi?retryWrites=true&w=majority'
+    // );
+    await mongoose.connect(process.env.MONGO_URI);
     console.log('MongoDB connected.');
     app.listen(PORT, () => console.log(`Server has been started on port ${PORT}...`));
   } catch (error) {
