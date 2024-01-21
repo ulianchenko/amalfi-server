@@ -4,7 +4,7 @@
 // import auth from '../middlewares/auth.middleware';
 const express = require('express');
 const Room = require('../models/Room');
-const filterRooms = require('../utils/filterRooms');
+const { filterRooms } = require('../utils/filterRooms');
 const auth = require('../middlewares/auth.middleware');
 
 const router = express.Router({ mergeParams: true });

@@ -11,7 +11,7 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../models/User');
 const tokenService  = require('../services/token.service');
-const generateUserData = require('../utils/generateUserData');
+const { generateUserData } = require('../utils/generateUserData');
 
 
 const router = express.Router({ mergeParams: true });

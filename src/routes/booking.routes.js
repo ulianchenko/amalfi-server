@@ -4,7 +4,7 @@
 // import auth from '../middlewares/auth.middleware';
 const express = require('express');
 const Booking = require('../models/Booking');
-const checkCanBooking = require('../utils/checkCanBooking');
+const { checkCanBooking } = require('../utils/checkCanBooking');
 const auth = require('../middlewares/auth.middleware');
 
 const router = express.Router({ mergeParams: true });
