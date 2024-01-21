@@ -12,7 +12,8 @@ const tokenSchema = new Schema(
 );
 
 
-const Token = model('Token', tokenSchema);
+// const Token = model('Token', tokenSchema);
+module.exports = model('Token', tokenSchema);
 
 // export default Token;
-module.exports = Token;
+// module.exports = Token;

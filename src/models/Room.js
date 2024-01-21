@@ -20,8 +20,8 @@ const roomSchema= new Schema({
   hasDisabledAssistant: Boolean
 });
 
-const Room = model('Room', roomSchema);
 // const Room = model('Room', roomSchema);
+module.exports = model('Room', roomSchema);
 
 // export default Room;
-module.exports = Room;
+// module.exports = Room;

@@ -15,7 +15,8 @@ const bookingSchema = new Schema({
 });
 
 
-const Booking = model('Booking', bookingSchema);
+// const Booking = model('Booking', bookingSchema);
+module.exports = model('Booking', bookingSchema);
 
 // export default Booking;
-module.exports = Booking;
+// module.exports = Booking;

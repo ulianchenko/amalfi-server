@@ -13,7 +13,8 @@ const userSchema = new Schema({
   gender: { type: String, enum: ['male', 'female'] },
 });
 
-const User = model('User', userSchema);
+// const User = model('User', userSchema);
+module.exports = model('User', userSchema);
 
 // export default User;
-module.exports = User;
+// module.exports = User;

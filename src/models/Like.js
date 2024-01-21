@@ -20,7 +20,8 @@ const likeSchema = new Schema(
 );
 
 
-const Like = model('Like', likeSchema);
+// const Like = model('Like', likeSchema);
+module.exports = model('Like', likeSchema);
 
 // export default Like;
-module.exports = Like;
+// module.exports = Like;
